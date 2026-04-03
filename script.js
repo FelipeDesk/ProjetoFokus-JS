@@ -6,6 +6,7 @@ const banner = document.querySelector('.app__image');
 const titulo = document.querySelector('.app__title');
 const botoes = document.querySelectorAll('.app__card-button');
 const startPauseBt = document.getElementById('start-pause');
+const resetBt = document.getElementById('reset')
 const musicaFocoInput = document.getElementById('alternar-musica');
 const iniciarOuPausarBt = document.querySelector('#start-pause span');
 const imgIniciarOuPausar = document.querySelector('.app__card-primary-butto-icon');
@@ -98,6 +99,27 @@ function inciarOuPausar() {
     iniciarOuPausarBt.textContent = 'Pausar';
     imgIniciarOuPausar.setAttribute('src', '/imagens/pause.png');
 }
+
+resetBt.addEventListener('click', () => {
+    const confirmar = confirm('Quer resetar o cronometro?');
+
+    if (confirmar) {
+        zerar();
+        const contexto = html.getAttribute('data-contexto');
+
+        if (contexto === 'foco') {
+            tempoDecorridoEmSegundos = 1500;
+        } else if (contexto === 'descanso-curto') {
+            tempoDecorridoEmSegundos = 300;
+        } else {
+            tempoDecorridoEmSegundos = 900;
+        }
+
+        mostrarTempo();
+    } else {
+        return;
+    }
+});
 
 function zerar() {
     clearInterval(intervaloId);
