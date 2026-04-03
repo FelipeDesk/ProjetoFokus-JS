@@ -127,6 +127,7 @@ const removerTarefas = (somenteCompletas) => {
         elemento.remove()
     })
     tarefas = somenteCompletas ? tarefas.filter(tarefa => !tarefa.completa) : []
+    paragrafoDescricaoTarefa.textContent = ''
     atualizarTarefas()
 }
 
